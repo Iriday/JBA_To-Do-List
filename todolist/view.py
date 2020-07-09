@@ -19,7 +19,10 @@ def output_tasks(tasks):
     if len(tasks) == 0:
         print("Nothing to do!")
     else:
-        print(*tasks)
+        i = 0
+        while i < len(tasks):
+            print(f"{i + 1}.", tasks[i])
+            i += 1
 
 
 def output(data):
