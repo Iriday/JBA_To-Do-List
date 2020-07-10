@@ -2,7 +2,7 @@ from sqlalchemy.engine import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, Date
 from sqlalchemy.orm import sessionmaker
-from datetime import datetime
+from datetime import datetime, timedelta
 
 engine = create_engine("sqlite:///todo.db?check_same_thread=False")
 Base = declarative_base()
@@ -27,6 +27,14 @@ session = Session()
 def get_today_tasks():
     dt = datetime.today().date()
     return session.query(Task).filter(Task.deadline == dt).all()
+
+
+# sorted by deadline asc
+def get_week_tasks():
+    dt_today = datetime.today().date()
+    dt_plus_seven = (dt_today + timedelta(days=7))
+    return session.query(Task).filter(dt_today <= Task.deadline).filter(Task.deadline < dt_plus_seven) \
+        .order_by(Task.deadline).all()
 
 
 # sorted by deadline asc

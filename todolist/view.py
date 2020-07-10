@@ -1,12 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def menu():
-    print("1) Today's tasks", "2) Add task", "3) All tasks", "0) Exit", sep="\n")
+    print("1) Today's tasks", "2) Week's tasks", "3) All tasks", "4) Add task", "0) Exit", sep="\n")
 
     while True:
         option = input()
-        if option in ("1", "2", "3", "0"):
+        if option in ("1", "2", "3", "4", "0"):
             return int(option)
         else:
             print("Incorrect input, please try again!")
@@ -35,6 +35,26 @@ def output_today_tasks(tasks):
         while i < len(tasks):
             print(f"{i + 1}.", tasks[i])
             i += 1
+
+
+def output_week_tasks(tasks):
+    dt = datetime.today()
+    day_counter = 0
+    while day_counter < 7:
+        date_adjusted = (dt + timedelta(days=day_counter)).date()
+        print(date_adjusted.strftime("%A %d %b") + ":")
+
+        tasks_filtered = [t for t in tasks if t.deadline == date_adjusted]
+        if len(tasks_filtered) == 0:
+            print("Nothing to do!")
+        else:
+            i = 0
+            while i < len(tasks_filtered):
+                print(f"{i + 1}.", tasks_filtered[i])
+                i += 1
+        if day_counter != 6:
+            print()
+        day_counter += 1
 
 
 def output_all_tasks(tasks):

@@ -7,10 +7,12 @@ while True:
     if option == 1:
         view.output_today_tasks(model.get_today_tasks())
     elif option == 2:
-        model.add_task(view.get_task(), view.get_deadline())
-        view.output("The task has been added!")
+        view.output_week_tasks(model.get_week_tasks())
     elif option == 3:
         view.output_all_tasks(model.get_all_tasks())
+    elif option == 4:
+        model.add_task(view.get_task(), view.get_deadline())
+        view.output("The task has been added!")
     elif option == 0:
         view.output("Bye!")
         break
