@@ -2,11 +2,11 @@ from datetime import datetime
 
 
 def menu():
-    print("1) Today's tasks", "2) Add task", "0) Exit", sep="\n")
+    print("1) Today's tasks", "2) Add task", "3) All tasks", "0) Exit", sep="\n")
 
     while True:
         option = input()
-        if option in ("1", "2", "0"):
+        if option in ("1", "2", "3", "0"):
             return int(option)
         else:
             print("Incorrect input, please try again!")
@@ -34,6 +34,17 @@ def output_today_tasks(tasks):
         i = 0
         while i < len(tasks):
             print(f"{i + 1}.", tasks[i])
+            i += 1
+
+
+def output_all_tasks(tasks):
+    print("All tasks:")
+    if len(tasks) == 0:
+        print("Nothing to do!")
+    else:
+        i = 0
+        while i < len(tasks):
+            print(f"{i + 1}.", f"{tasks[i]}.", tasks[i].deadline.strftime("%d %b"))
             i += 1
 
 

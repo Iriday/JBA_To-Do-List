@@ -9,7 +9,11 @@ while True:
     elif option == 2:
         model.add_task(view.get_task(), view.get_deadline())
         view.output("The task has been added!")
+    elif option == 3:
+        view.output_all_tasks(model.get_all_tasks())
     elif option == 0:
         view.output("Bye!")
         break
+    else:
+        view.output("Something when wrong")
     view.output("")

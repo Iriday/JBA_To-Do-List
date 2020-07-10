@@ -29,8 +29,9 @@ def get_today_tasks():
     return session.query(Task).filter(Task.deadline == dt).all()
 
 
+# sorted by deadline asc
 def get_all_tasks():
-    return session.query(Task).all()
+    return session.query(Task).order_by(Task.deadline).all()
 
 
 def add_task(task, deadline):
