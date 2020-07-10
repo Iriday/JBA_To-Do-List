@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def menu():
     print("1) Today's tasks", "2) Add task", "0) Exit", sep="\n")
 
@@ -14,8 +17,17 @@ def get_task():
     return input()
 
 
-def output_tasks(tasks):
-    print("Today:")
+def get_deadline():
+    while True:
+        print('Enter deadline (example: "2020-06-15")')
+        try:
+            return datetime.strptime(input(), "%Y-%m-%d")
+        except ValueError:
+            print("Error. Incorrect date, please try again\n")
+
+
+def output_today_tasks(tasks):
+    print("Today " + datetime.today().strftime("%d %b") + ":")
     if len(tasks) == 0:
         print("Nothing to do!")
     else:

@@ -24,10 +24,15 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
+def get_today_tasks():
+    dt = datetime.today().date()
+    return session.query(Task).filter(Task.deadline == dt).all()
+
+
 def get_all_tasks():
     return session.query(Task).all()
 
 
-def add_task(task):
-    session.add(Task(task=task))
+def add_task(task, deadline):
+    session.add(Task(task=task, deadline=deadline))
     session.commit()
