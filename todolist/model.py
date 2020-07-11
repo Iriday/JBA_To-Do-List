@@ -42,6 +42,12 @@ def get_all_tasks():
     return session.query(Task).order_by(Task.deadline).all()
 
 
+# get missed tasks / sorted by deadline asc
+def get_tasks_before_today():
+    td = datetime.today().date()
+    return session.query(Task).filter(Task.deadline < td).order_by(Task.deadline).all()
+
+
 def add_task(task, deadline):
     session.add(Task(task=task, deadline=deadline))
     session.commit()

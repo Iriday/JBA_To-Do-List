@@ -2,11 +2,11 @@ from datetime import datetime, timedelta
 
 
 def menu():
-    print("1) Today's tasks", "2) Week's tasks", "3) All tasks", "4) Add task", "0) Exit", sep="\n")
+    print("1) Today's tasks", "2) Week's tasks", "3) All tasks", "4) Missed tasks", "5) Add task", "0) Exit", sep="\n")
 
     while True:
         option = input()
-        if option in ("1", "2", "3", "4", "0"):
+        if option in ("1", "2", "3", "4", "5", "0"):
             return int(option)
         else:
             print("Incorrect input, please try again!")
@@ -61,6 +61,17 @@ def output_all_tasks(tasks):
     print("All tasks:")
     if len(tasks) == 0:
         print("Nothing to do!")
+    else:
+        i = 0
+        while i < len(tasks):
+            print(f"{i + 1}.", f"{tasks[i]}.", tasks[i].deadline.strftime("%d %b"))
+            i += 1
+
+
+def output_missed_tasks(tasks):
+    print("Missed tasks:")
+    if len(tasks) == 0:
+        print("Nothing is missed!")
     else:
         i = 0
         while i < len(tasks):

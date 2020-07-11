@@ -11,6 +11,8 @@ while True:
     elif option == 3:
         view.output_all_tasks(model.get_all_tasks())
     elif option == 4:
+        view.output_missed_tasks(model.get_tasks_before_today())
+    elif option == 5:
         model.add_task(view.get_task(), view.get_deadline())
         view.output("The task has been added!")
     elif option == 0:
