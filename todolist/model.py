@@ -51,3 +51,9 @@ def get_tasks_before_today():
 def add_task(task, deadline):
     session.add(Task(task=task, deadline=deadline))
     session.commit()
+
+
+def delete_all_missed_tasks():
+    td = datetime.today().date()
+    session.query(Task).filter(Task.deadline < td).delete()
+    session.commit()

@@ -2,11 +2,12 @@ from datetime import datetime, timedelta
 
 
 def menu():
-    print("1) Today's tasks", "2) Week's tasks", "3) All tasks", "4) Missed tasks", "5) Add task", "0) Exit", sep="\n")
+    print("1) Today's tasks", "2) Week's tasks", "3) All tasks", "4) Missed tasks", "5) Add task",
+          "6) Delete all missed tasks", "0) Exit", sep="\n")
 
     while True:
         option = input()
-        if option in ("1", "2", "3", "4", "5", "0"):
+        if option in ("1", "2", "3", "4", "5", "6", "0"):
             return int(option)
         else:
             print("Incorrect input, please try again!")
