@@ -2,12 +2,12 @@ from datetime import datetime, timedelta
 
 
 def menu():
-    print("1) Today's tasks", "2) Week's tasks", "3) All tasks", "4) Missed tasks", "5) Add task",
-          "6) Delete all missed tasks", "0) Exit", sep="\n")
+    print("1) Today's tasks", "2) Week's tasks", "3) All tasks", "4) Missed tasks", "5) Add task", "6) Delete task",
+          "7) Delete all missed tasks", "0) Exit", sep="\n")
 
     while True:
         option = input()
-        if option in ("1", "2", "3", "4", "5", "6", "0"):
+        if option in ("1", "2", "3", "4", "5", "6", "7", "0"):
             return int(option)
         else:
             print("Incorrect input, please try again!")
@@ -78,6 +78,26 @@ def output_missed_tasks(tasks):
         while i < len(tasks):
             print(f"{i + 1}.", f"{tasks[i]}.", tasks[i].deadline.strftime("%d %b"))
             i += 1
+
+
+def get_task_to_del(tasks):
+    if len(tasks) == 0:
+        print("Task list is empty!")
+    else:
+        print("Choose the number of the task you want to delete:")
+        i = 0
+        while i < len(tasks):
+            print(f"{i + 1}.", f"{tasks[i]}.", tasks[i].deadline.strftime("%d %b"))
+            i += 1
+        try:
+            task_num = int(input())
+        except ValueError:
+            print("Error, incorrect input, please try again")
+        else:
+            if 1 <= task_num <= len(tasks):
+                return tasks[task_num - 1]
+            else:
+                print("Error, incorrect input, please try again")
 
 
 def output(data):

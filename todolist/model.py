@@ -53,6 +53,11 @@ def add_task(task, deadline):
     session.commit()
 
 
+def delete_task(task):
+    session.delete(task)
+    session.commit()
+
+
 def delete_all_missed_tasks():
     td = datetime.today().date()
     session.query(Task).filter(Task.deadline < td).delete()

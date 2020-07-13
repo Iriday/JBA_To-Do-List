@@ -16,6 +16,11 @@ while True:
         model.add_task(view.get_task(), view.get_deadline())
         view.output("The task has been added!")
     elif option == 6:
+        task = view.get_task_to_del(model.get_all_tasks())
+        if task:
+            model.delete_task(task)
+            view.output("The task has been deleted!")
+    elif option == 7:
         if len(model.get_tasks_before_today()) == 0:
             view.output("Nothing is missed!")
         else:
